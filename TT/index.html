@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小学生打单词</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="menu-container" id="menuContainer">
+        <h1>小学生打单词</h1>
+        <div class="mode-buttons">
+            <button id="easyMode">简单模式</button>
+            <button id="advancedMode">高级模式</button>
+        </div>
+    </div>
+
+    <div class="game-container" id="gameContainer" style="display: none;" data-mode="">
+        <div class="game-header">
+            <div class="score">
+                <span>击中: <span id="hits">0</span></span>
+                <span>未击中: <span id="misses">0</span></span>
+            </div>
+            <div class="game-status" id="gameStatus">准备开始...</div>
+            <button id="backToMenu" class="back-button">返回菜单</button>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+        <div class="game-controls">
+            <input type="text" id="userInput" placeholder="在此输入..." autocomplete="off">
+            <button id="startButton">开始游戏</button>
+        </div>
+        <div class="game-message" id="gameMessage"></div>
+    </div>
+
+    <script src="words.js"></script>
+    <script src="explosion.js"></script>
+    <script src="simple-game.js"></script>
+    <script src="game.js"></script>
+    <script>
+        // 游戏模式选择和初始化
+        let currentGame = null;
+
+        function switchGameMode(mode) {
+            // Clean up existing game if any
+            if (currentGame) {
+                currentGame.cleanup();
+                currentGame = null;
+            }
+
+            document.getElementById('menuContainer').style.display = 'none';
+            document.getElementById('gameContainer').style.display = 'block';
+            
+            // Reset UI elements
+            document.getElementById('userInput').value = '';
+            document.getElementById('userInput').placeholder = '在此输入...';
+            document.getElementById('hits').textContent = '0';
+            document.getElementById('misses').textContent = '0';
+            document.getElementById('gameMessage').textContent = '';
+            document.getElementById('startButton').textContent = '开始游戏';
+            
+            if (mode === 'simple') {
+                document.getElementById('gameContainer').dataset.mode = 'simple';
+                document.getElementById('gameContainer').classList.add('simple-mode');
+                document.getElementById('gameStatus').textContent = '准备开始，输入单词后将显示中文含义';
+                currentGame = new SimpleGame();
+            } else {
+                document.getElementById('gameContainer').dataset.mode = 'advanced';
+                document.getElementById('gameContainer').classList.remove('simple-mode');
+                document.getElementById('gameStatus').textContent = '准备开始...';
+                currentGame = new Game();
+            }
+        }
+
+        document.getElementById('easyMode').addEventListener('click', () => {
+            switchGameMode('simple');
+        });
+
+        document.getElementById('advancedMode').addEventListener('click', () => {
+            switchGameMode('advanced');
+        });
+
+        document.getElementById('backToMenu').addEventListener('click', () => {
+            if (currentGame) {
+                currentGame.cleanup();
+                currentGame = null;
+            }
+            document.getElementById('gameContainer').style.display = 'none';
+            document.getElementById('menuContainer').style.display = 'flex';
+        });
+    </script>
+</body>
+</html>

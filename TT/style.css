@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.menu-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.menu-container h1 {
+    color: #333;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.mode-buttons button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#easyMode {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#advancedMode {
+    background-color: #2196F3;
+    color: white;
+}
+
+.mode-buttons button:hover {
+    transform: scale(1.05);
+}
+
+.game-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 800px;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.score {
+    font-size: 18px;
+}
+
+.score span {
+    margin-right: 20px;
+}
+
+.game-status {
+    font-size: 18px;
+    color: #666;
+}
+
+.back-button {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #f4511e;
+}
+
+#gameCanvas {
+    width: 100%;
+    height: 400px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+}
+
+.game-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#userInput {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    height: 40px;
+}
+
+/* 简易模式下的输入框样式 */
+.simple-mode #userInput {
+    font-size: 24px;
+    height: 45px;
+    text-align: center;
+}
+
+#userInput:focus {
+    border-color: #4CAF50;
+}
+
+#startButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#startButton:hover {
+    background-color: #45a049;
+}
+
+.game-message {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    min-height: 30px;
+}
+
+/* 爆炸动画效果 */
+.explosion {
+    position: absolute;
+    pointer-events: none;
+    animation: explode 0.5s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* 简单模式的大字体样式 */
+.simple-mode-word {
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+}
