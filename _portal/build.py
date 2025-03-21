@@ -100,8 +100,13 @@ def generate_html(games):
     </style>
     <script>
         function showGame(url) {
-            document.getElementById('game-frame').src = url;
+            const frame = document.getElementById('game-frame');
+            frame.src = url;
             document.getElementById('game-container').style.display = 'block';
+            // 等待iframe加载完成后设置焦点
+            frame.onload = function() {
+                frame.focus();
+            };
         }
         
         function goBack() {
