@@ -24,7 +24,7 @@ def generate_html(games):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>游戏门户</title>
+    <title>AI上古怀旧游戏</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -112,7 +112,7 @@ def generate_html(games):
 </head>
 <body>
     <div class="container">
-        <h1>游戏门户</h1>
+        <h1>AI上古怀旧游戏</h1>
         <div class="game-grid">
 '''
 
